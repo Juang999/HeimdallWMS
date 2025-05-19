@@ -4,20 +4,20 @@ class RoleService {
     createRole = async (roleName, attributes, transaction) => {
         let result = await Roles.create({
             role_name: roleName,
-            attributes
+            role_features: attributes
         }, {
             include: [
                 {
                     model: RoleFeature,
-                    as: 'feature',
+                    as: 'role_features',
                     include: [
                         {
                             model: RoleSubFeature,
-                            as: 'sub_feature',
+                            as: 'role_subfeatures',
                             include: [
                                 {
                                     model: RoleAccess,
-                                    as: 'access'
+                                    as: 'role_accesses'
                                 }
                             ]
                         }

@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       RoleSubFeature.belongsTo(models.SubFeature, {
-        as: 'sub_feature',
+        as: 'sub_features',
         targetKey: 'id',
         foreignKey: 'sub_feature_id'
       })
