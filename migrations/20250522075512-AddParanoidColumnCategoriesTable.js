@@ -9,18 +9,15 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-
-    await queryInterface.addColumn('RoleAccesses', 'role_sub_feature_id', {
-      type: Sequelize.BIGINT,
-      references: {
-        model: {
-          tableName: 'RoleSubFeatures'
-        },
-        key: 'id'
-      },
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
-    })
+    await Promise.all([
+      queryInterface.addColumn('Categories', 'deletedAt', {
+        type: Sequelize.DataTypes.DATE,
+      }),
+      queryInterface.addColumn('Categories', 'is_active', {
+        type: Sequelize.DataTypes.BOOLEAN,
+        defaultValue: false
+      }),
+    ]);
   },
 
   async down (queryInterface, Sequelize) {
@@ -30,7 +27,9 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-
-    await queryInterface.removeColumn('RoleAccesses', 'role_sub_feature_id', {})
+    await Promise.all([
+      queryInterface.removeColumn('Categories', 'deletedAt', null),
+      queryInterface.removeColumn('Categories', 'is_active', null)
+    ])
   }
 };

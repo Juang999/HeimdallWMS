@@ -10,16 +10,8 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
 
-    await queryInterface.addColumn('RoleAccesses', 'role_sub_feature_id', {
-      type: Sequelize.BIGINT,
-      references: {
-        model: {
-          tableName: 'RoleSubFeatures'
-        },
-        key: 'id'
-      },
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
+    await queryInterface.addColumn('Brands', 'deletedAt', {
+      type: Sequelize.DataTypes.DATE
     })
   },
 
@@ -31,6 +23,6 @@ module.exports = {
      * await queryInterface.dropTable('users');
      */
 
-    await queryInterface.removeColumn('RoleAccesses', 'role_sub_feature_id', {})
+    await queryInterface.removeColumn('Brands', 'deletedAt', null);
   }
 };

@@ -27,10 +27,19 @@ app.use(helmet({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/auth', require('./src/auth/controllers/auth.controller'));
-app.use('/user', require('./src/auth/controllers/user.controller'));
-app.use('/role', require('./src/auth/controllers/role.controller'));
-app.use('/feature', require('./src/auth/controllers/feature.controller'));
+
+/**
+ * auth routes
+*/
+app.use('/auth/auth', require('./src/auth/controllers/auth.controller'));
+app.use('/auth/user', require('./src/auth/controllers/user.controller'));
+app.use('/auth/role', require('./src/auth/controllers/role.controller'));
+app.use('/auth/feature', require('./src/auth/controllers/feature.controller'));
+
+/**
+ * product management routes
+*/
+app.use('/product', require('./src/product-management/routes/product.route'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
