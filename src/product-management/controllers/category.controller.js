@@ -1,4 +1,9 @@
-const { createCategory, getDataCategory, updateCategory, deleteCategory, addSubCategory } = require('../services/category.service');
+const { 
+    findCategory,
+    createCategory, getDataCategory, 
+    updateCategory, deleteCategory, 
+    addSubCategory, updateSubCategory
+} = require('../services/category.service');
 const { sequelize } = require('../../../models');
 
 class CategoryController {
@@ -30,6 +35,28 @@ class CategoryController {
 
     readCategory = (req, res) => {
         getDataCategory()
+        .then(result => {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'ok',
+                    data: result,
+                    error: null
+                })
+        })
+        .catch(err => {
+            res.status(400)
+                .json({
+                    status: 'failed',
+                    message: 'error',
+                    data: null,
+                    error: err.message
+                })
+        })
+    }
+
+    findCategory = (req, res) => {
+        findCategory(req.params.category_id)
         .then(result => {
             res.status(200)
                 .json({
@@ -101,6 +128,28 @@ class CategoryController {
                 .json({
                     status: 'success',
                     message: 'added',
+                    data: result,
+                    error: null
+                })
+        })
+        .catch(err => {
+            res.status(400)
+                .json({
+                    status: 'failed',
+                    message: 'error',
+                    data: null,
+                    error: err.message
+                })
+        })
+    }
+
+    updateSubCategory = (req, res) => {
+        updateSubCategory(req.params.sub_category_id, req.body.sub_category_name)
+        .then(result => {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'updated',
                     data: result,
                     error: null
                 })

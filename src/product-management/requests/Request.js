@@ -7,8 +7,12 @@ module.exports = {
     },
     CategoryRequest: {
         CreateCategoryRequest: require('./category/create-category.request'),
+        FindCategoryRequest: require('./category/find-category.request'),
         UpdateParamsCategoryRequest: require('./category/update-params-category.request'),
         UpdateBodyCategoryRequest: require('./category/update-body-category.request'),
         DeleteParamsCategoryRequest: require('./category/delete-params-category.request'),
+        CreateSubCategoryRequest: require('./category/create-sub-category.request'),
+        UpdateParamsSubCategoryRequest: require('./category/update-params-sub-category.request'),
+        UpdateBodySubCategoryRequest: require('./category/update-body-sub-category.request'),
     }
 }
