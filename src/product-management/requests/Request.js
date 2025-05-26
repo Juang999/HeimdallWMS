@@ -14,5 +14,16 @@ module.exports = {
         CreateSubCategoryRequest: require('./category/create-sub-category.request'),
         UpdateParamsSubCategoryRequest: require('./category/update-params-sub-category.request'),
         UpdateBodySubCategoryRequest: require('./category/update-body-sub-category.request'),
+        DeleteParamsSubCategoryRequest: require('./category/delete-params-sub-category.request')
+    },
+    ColorRequest: {
+        CreateColorRequest: require('./color/create-color.request'),
+        DeleteParamsColorRequest: require('./color/delete-params-color.request')
+    },
+    SizeRequest: {
+        CreateSizeRequest: require('./size/create-size.request'),
+        FindParamsSizeRequest: require('./size/find-params-size.request'),
+        UpdateParamsSizeRequest: require('./size/update-params-size.request'),
+        UpdateBodySizeRequest: require('./size/update-body-size.request'),
     }
 }

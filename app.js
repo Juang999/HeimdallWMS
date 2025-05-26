@@ -41,6 +41,11 @@ app.use('/auth/feature', require('./src/auth/controllers/feature.controller'));
 */
 app.use('/product', require('./src/product-management/routes/product.route'));
 
+/**
+ * master management routes
+*/
+app.use('/master-management', require('./src/master-management/routes/master.route'));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

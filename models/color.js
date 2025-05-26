@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     hex_code: DataTypes.STRING
   }, {
     sequelize,
+    paranoid: true,
     modelName: 'Color',
   });
   return Color;

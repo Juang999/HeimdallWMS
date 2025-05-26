@@ -2,7 +2,8 @@ const {
     findCategory,
     createCategory, getDataCategory, 
     updateCategory, deleteCategory, 
-    addSubCategory, updateSubCategory
+    addSubCategory, updateSubCategory,
+    deleteSubCategory,
 } = require('../services/category.service');
 const { sequelize } = require('../../../models');
 
@@ -150,6 +151,28 @@ class CategoryController {
                 .json({
                     status: 'success',
                     message: 'updated',
+                    data: result,
+                    error: null
+                })
+        })
+        .catch(err => {
+            res.status(400)
+                .json({
+                    status: 'failed',
+                    message: 'error',
+                    data: null,
+                    error: err.message
+                })
+        })
+    }
+
+    deleteSubCategory = (req, res) => {
+        deleteSubCategory(req.params.sub_category_id)
+        .then(result => {
+            res.status(200)
+                .json({
+                    status: 'success',
+                    message: 'deleted',
                     data: result,
                     error: null
                 })

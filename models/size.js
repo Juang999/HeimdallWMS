@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Size.init({
     size_name: DataTypes.STRING,
-    size_group: DataTypes.STRING
+    size_group_id: DataTypes.BIGINT
   }, {
     sequelize,
     modelName: 'Size',

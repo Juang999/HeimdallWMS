@@ -105,6 +105,16 @@ class CategoryService {
 
         return result;
     }
+
+    deleteSubCategory = async (subCategoryId) => {
+        let result = await SubCategory.destroy({
+            where: {
+                id: subCategoryId
+            }
+        });
+
+        return result;
+    }
 }
 
 module.exports = new CategoryService();

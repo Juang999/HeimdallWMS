@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      CodeMaster.hasMany(models.Size, {
+        as: 'size',
+        sourceKey: 'id',
+        foreignKey: 'size_group_id',
+      })
     }
   }
   CodeMaster.init({
