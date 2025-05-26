@@ -3,3 +3,4 @@
 .env.testing
 .env.production
 node_modules
+src/**/unit-test

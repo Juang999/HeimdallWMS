@@ -64,4 +64,9 @@ router.get('/size/:size_group_id/find', [ AuthMiddleware, SizeRequest.FindParams
 router.patch('/size/:size_id/update', [ AuthMiddleware, SizeRequest.UpdateParamsSizeRequest, SizeRequest.UpdateBodySizeRequest ], updateSize);
 router.delete('/size/:size_id/delete', [ AuthMiddleware, SizeRequest.UpdateParamsSizeRequest ], deleteSize);
 
+/**
+ * product's route
+*/
+// router.post('/product/create', [ AuthMiddleware ],)
+
 module.exports = router;

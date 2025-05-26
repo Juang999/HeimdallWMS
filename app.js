@@ -39,7 +39,7 @@ app.use('/auth/feature', require('./src/auth/controllers/feature.controller'));
 /**
  * product management routes
 */
-app.use('/product', require('./src/product-management/routes/product.route'));
+app.use('/product-management', require('./src/product-management/routes/product.route'));
 
 /**
  * master management routes

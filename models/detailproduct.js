@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      DetailProduct.belongsTo(models.MasterProduct, {
+        as: 'master_product',
+        foreignKey: 'product_id',
+        targetKey: 'id'
+      });
     }
   }
   DetailProduct.init({
@@ -21,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     size_id: DataTypes.BIGINT
   }, {
     sequelize,
+    paranoid: true,
     modelName: 'DetailProduct',
   });
   return DetailProduct;

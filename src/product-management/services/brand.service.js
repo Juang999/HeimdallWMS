@@ -7,9 +7,10 @@ class BrandService {
         return result;
     }
 
-    createBrand = async (brandName) => {
+    createBrand = async (brandName, brandCode) => {
         let result = await Brand.create({
-            brand_name: brandName
+            brand_name: brandName,
+            brand_code: brandCode
         });
 
         return result;

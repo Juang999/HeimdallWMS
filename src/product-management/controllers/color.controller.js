@@ -2,7 +2,7 @@ const { createColor, getDataColor, deleteColor } = require('../services/color.se
 
 class ColorController {
     createColor = (req, res) => {
-        createColor(req.body.color_name, req.body.hex_code)
+        createColor(req.body.color_name, req.body.hex_code, req.body.color_code)
         .then(result => {
             res.status(200)
                 .json({

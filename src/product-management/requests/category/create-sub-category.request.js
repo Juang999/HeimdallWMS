@@ -2,7 +2,8 @@ const Joi = require('joi');
 
 const validation = Joi.object({
     category_id: Joi.number().required(),
-    sub_category_name: Joi.string().required()
+    sub_category_name: Joi.string().required(),
+    sub_category_code: Joi.string().required()
 })
 
 const CreateSubCategoryRequest = (req, res, next) => {

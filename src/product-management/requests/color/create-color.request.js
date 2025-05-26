@@ -2,7 +2,8 @@ const Joi = require('joi');
 
 const validation = Joi.object({
     color_name: Joi.string().required(),
-    hex_code: Joi.string().required()
+    hex_code: Joi.string().required(),
+    color_code: Joi.string().required()
 })
 
 const CreateColorRequest = (req, res, next) => {

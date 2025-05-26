@@ -1,9 +1,10 @@
 const { Category, SubCategory } = require('../../../models');
 
 class CategoryService {
-    createCategory = async ( categoryName, subCategoryName, transaction ) => {
+    createCategory = async ( categoryName, categoryCode, subCategoryName, transaction ) => {
         let result = await Category.create({
             category_name: categoryName,
+            category_code: categoryCode,
             sub_categories: subCategoryName
         }, {
             include: [
@@ -22,7 +23,8 @@ class CategoryService {
         let result = await Category.findAll({
             attributes: [
                 ['id', 'category_id'], 
-                'category_name'
+                'category_name',
+                'category_code'
             ],
             include: [
                 {
@@ -30,7 +32,8 @@ class CategoryService {
                     as: 'sub_categories',
                     attributes: [
                         ['id', 'sub_category_id'],
-                        'sub_category_name'
+                        'sub_category_name',
+                        'sub_category_code'
                     ]
                 }
             ]
@@ -39,9 +42,10 @@ class CategoryService {
         return result;
     }
 
-    updateCategory = async ( categoryId, categoryName ) => {
+    updateCategory = async ( categoryId, categoryName, categoryCode ) => {
         let result = await Category.update({
-            category_name: categoryName
+            category_name: categoryName,
+            category_code: categoryCode
         }, {
             where: {
                 id: categoryId
@@ -65,7 +69,8 @@ class CategoryService {
         let result = await Category.findOne({
             attributes: [
                 ['id', 'category_id'],
-                'category_name'
+                'category_name',
+                'category_code'
             ],
             include: [
                 {
@@ -73,7 +78,8 @@ class CategoryService {
                     as: 'sub_categories',
                     attributes: [
                         ['id', 'sub_category_id'],
-                        'sub_category_name'
+                        'sub_category_name',
+                        'sub_category_code'
                     ]
                 }
             ],
@@ -85,20 +91,37 @@ class CategoryService {
         return result;
     }
 
-    addSubCategory = async ( categoryId, subCategoryName ) => {
+    addSubCategory = async ( categoryId, subCategoryName, subCategoryCode ) => {
         let result = await SubCategory.create({
             category_id: categoryId,
-            sub_category_name: subCategoryName
+            sub_category_name: subCategoryName,
+            sub_category_code: subCategoryCode
         });
 
         return result;
     }
 
-    updateSubCategory = async ( subCategoryId, subCategoryName ) => {
+    updateSubCategory = async ( subCategoryId, subCategoryName, subCategoryCode ) => {
         let result = await SubCategory.update({
-            sub_category_name: subCategoryName
+            sub_category_name: subCategoryName,
+            sub_category_code: subCategoryCode
         }, {
             where:{
+                id: subCategoryId
+            }
+        });
+
+        return result;
+    }
+
+    findSubCategory = async ( subCategoryId ) => {
+        let result = await SubCategory.findOne({
+            attributes: [
+                ['id', 'sub_category_id'],
+                'sub_category_name',
+                'sub_category_code'
+            ],
+            where: {
                 id: subCategoryId
             }
         });

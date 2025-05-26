@@ -1,10 +1,11 @@
 const { Color } = require('../../../models');
 
 class ColorService {
-    createColor = async (colorName, hexCode) => {
+    createColor = async (colorName, hexCode, colorCode) => {
         let result = await Color.create({
             color_name: colorName,
-            hex_code: hexCode
+            hex_code: hexCode,
+            color_code: colorCode
         })
 
         return result;
@@ -15,7 +16,8 @@ class ColorService {
             attributes: [
                 ['id', 'color_id'],
                 'color_name',
-                'hex_code'
+                'hex_code',
+                'color_code'
             ]
         });
 

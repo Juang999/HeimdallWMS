@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      MasterProduct.hasMany(models.DetailProduct, {
+        as: 'detail_products',
+        sourceKey: 'id',
+        foreignKey: 'product_id'
+      })
     }
   }
   MasterProduct.init({
@@ -20,9 +25,11 @@ module.exports = (sequelize, DataTypes) => {
     brand_id: DataTypes.BIGINT,
     category_id: DataTypes.BIGINT,
     sub_category_id: DataTypes.BIGINT,
-    product_seq: DataTypes.STRING
+    product_seq: DataTypes.STRING,
+    gender_id: DataTypes.BIGINT
   }, {
     sequelize,
+    paranoid: true,
     modelName: 'MasterProduct',
   });
   return MasterProduct;

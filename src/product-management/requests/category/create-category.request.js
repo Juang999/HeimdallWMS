@@ -2,8 +2,10 @@ const Joi = require('joi');
 
 const validation = Joi.object({
     category_name: Joi.string().required(),
+    category_code: Joi.string().min(2).max(3).required(),
     sub_categories: Joi.array().min(1).required().items(Joi.object({
-        sub_category_name: Joi.string().required()
+        sub_category_name: Joi.string().required(),
+        sub_category_code: Joi.string().min(2).max(3).required()
     }))
 })
 

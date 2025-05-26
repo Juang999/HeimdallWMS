@@ -10,7 +10,7 @@ const { sequelize } = require('../../../models');
 class CategoryController {
     createCategory = (req, res) => {
         sequelize.transaction(async t => {
-            let result = await createCategory(req.body.category_name, req.body.sub_categories, t);
+            let result = await createCategory(req.body.category_name, req.body.category_code, req.body.sub_categories, t);
 
             return result;
         })
@@ -79,7 +79,7 @@ class CategoryController {
     }
 
     updateCategory = (req, res) => {
-        updateCategory(req.params.category_id, req.body.category_name)
+        updateCategory(req.params.category_id, req.body.category_name, req.body.category_code)
         .then(result => {
             res.status(200)
                 .json({
@@ -123,7 +123,7 @@ class CategoryController {
     }
 
     createSubCategory = (req, res) => {
-        addSubCategory(req.body.category_id, req.body.sub_category_name)
+        addSubCategory(req.body.category_id, req.body.sub_category_name, req.body.sub_category_code)
         .then(result => {
             res.status(200)
                 .json({
@@ -145,7 +145,7 @@ class CategoryController {
     }
 
     updateSubCategory = (req, res) => {
-        updateSubCategory(req.params.sub_category_id, req.body.sub_category_name)
+        updateSubCategory(req.params.sub_category_id, req.body.sub_category_name, req.body.sub_category_code)
         .then(result => {
             res.status(200)
                 .json({

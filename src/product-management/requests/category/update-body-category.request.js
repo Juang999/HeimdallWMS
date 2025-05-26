@@ -1,7 +1,8 @@
 const Joi = require('joi');
 
 const validation = Joi.object({
-    category_name: Joi.string().required()
+    category_name: Joi.string().required(),
+    category_code: Joi.string().required()
 })
 
 const UpdateBodyCategoryRequest = (req, res, next) => {

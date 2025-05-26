@@ -24,7 +24,7 @@ class BrandController {
     }
 
     createBrand = (req, res) => {
-        createBrand(req.body.brand_name)
+        createBrand(req.body.brand_name, req.body.brand_code)
         .then(result => {
             res.status(200)
                 .json({
