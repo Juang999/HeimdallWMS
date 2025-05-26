@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT,
     brand_id: DataTypes.BIGINT,
     category_id: DataTypes.BIGINT,
-    sub_category_id: DataTypes.BIGINT
+    sub_category_id: DataTypes.BIGINT,
+    product_seq: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'MasterProduct',

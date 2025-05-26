@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Brand.init({
-    brand_name: DataTypes.STRING
+    brand_name: DataTypes.STRING,
+    brand_code: DataTypes.STRING
   }, {
     sequelize,
     paranoid: true,

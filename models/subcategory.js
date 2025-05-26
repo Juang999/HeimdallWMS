@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   SubCategory.init({
     sub_category_name: DataTypes.STRING,
-    category_id: DataTypes.BIGINT
+    category_id: DataTypes.BIGINT,
+    sub_category_code: DataTypes.STRING
   }, {
     sequelize,
     paranoid: true,

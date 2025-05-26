@@ -25,9 +25,10 @@ class BrandService {
         return result;
     }
 
-    updateBrand= async (brandId, brandName) => {
+    updateBrand= async (brandId, brandName, brandCode) => {
         let result = await Brand.update({
-            brand_name: brandName
+            brand_name: brandName,
+            brand_code: brandCode
         }, {
             where: {
                 id: brandId

@@ -83,7 +83,7 @@ class BrandController {
                 return;
             }
 
-            let result = await updateBrand(req.params.brand_id, req.body.brand_name);
+            let result = await updateBrand(req.params.brand_id, req.body.brand_name, req.body.brand_code);
 
             res.status(200)
                 .json({

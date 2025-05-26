@@ -1,11 +1,11 @@
 const Joi = require('joi');
 
 const validation = Joi.object({
-    brand_name: Joi.string().required()
+    brand_id: Joi.number().required()
 })
 
 const CreateBrandRequest = (req, res, next) => {
-    let createBrandValidate = validation.validate(req.body, {
+    let createBrandValidate = validation.validate(req.params, {
         abortEarly: false
     });
 
@@ -16,8 +16,8 @@ const CreateBrandRequest = (req, res, next) => {
 
         res.status(300)
             .json({
-                status: 'failed',
-                message: 'field required',
+                status: 'invalidate',
+                message: 'params required',
                 data: null,
                 error: error
             });
