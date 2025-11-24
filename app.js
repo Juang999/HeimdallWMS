@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var helmet = require('helmet');
 const {middleware: middlewareExpressHttpContext} = require('express-http-context');
+var cors = require('cors');
+const expressFileUpload = require('express-fileupload');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -17,13 +19,15 @@ app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(middlewareExpressHttpContext);
 app.use(helmet({
   hsts: false
 }));
+app.use(cors());
+app.use(expressFileUpload())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -39,12 +43,17 @@ app.use('/auth/feature', require('./src/auth/controllers/feature.controller'));
 /**
  * product management routes
 */
-app.use('/product-management', require('./src/product-management/routes/product.route'));
+app.use('/product-management', require('./src/product-management/routes/product-management.route'));
 
 /**
  * master management routes
 */
 app.use('/master-management', require('./src/master-management/routes/master.route'));
+
+/**
+ * warehouse management routes
+*/
+app.use('/warehouse-management', require('./src/warehouse-management/routes/warehouse-management.route'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

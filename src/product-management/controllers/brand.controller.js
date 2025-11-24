@@ -1,4 +1,5 @@
 const { retrieveBrand, createBrand, deleteBrand, updateBrand, findDataBrand } = require('../services/brand.service');
+const path = require('path');
 
 class BrandController {
     getDataBrand = (req, res) => {
@@ -24,7 +25,9 @@ class BrandController {
     }
 
     createBrand = (req, res) => {
-        createBrand(req.body.brand_name, req.body.brand_code)
+        const uploadedImage = this.uploadImage(req.files.file);
+
+        createBrand(req.body.brand_name, req.body.brand_code, uploadedImage)
         .then(result => {
             res.status(200)
                 .json({
@@ -101,6 +104,24 @@ class BrandController {
                     error: error.message
                 });
         }
+    }
+
+    uploadImage = (file) => {
+        const pathFolder = path.join(__dirname, '..', '..', '..', 'public', 'images', 'brands');
+        const fileName = Date.now() + '-' + file.name;
+        const filePath = path.join('images', 'brands', fileName);
+
+        const resultPathFolder = path.join(pathFolder, fileName);
+
+        file.mv(resultPathFolder, (err) => {
+            if (err) {
+                console.info(err)
+
+                return;
+            }
+        });
+
+        return filePath;
     }
 }
 

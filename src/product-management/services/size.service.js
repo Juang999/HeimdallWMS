@@ -1,4 +1,5 @@
 const { Size, CodeMaster } = require('../../../models');
+const { Op } = require('sequelize');
 
 class SizeService {
     createSize = async (body) => {
@@ -57,6 +58,19 @@ class SizeService {
         let result = await Size.destroy({
             where: {
                 id: sizeId
+            }
+        });
+
+        return result;
+    }
+
+    retrieveSizes = async (bulkSizeId) => {
+        let result = await Size.findAll({
+            attributes: ['id', 'size_name', 'size_code'],
+            where: {
+                id: {
+                    [Op.in]: bulkSizeId
+                }
             }
         });
 

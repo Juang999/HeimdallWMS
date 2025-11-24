@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const router = Router();
-const { BrandRequest, CategoryRequest, ColorRequest, SizeRequest } = require('../requests/Request');
+const { BrandRequest, CategoryRequest, ColorRequest, SizeRequest, ProductRequest } = require('../requests/request');
+const { multerMiddleware } = require('../../../helper/uploadImage');
 const { AuthMiddleware } = require('../../auth/middleware/kernel');
 const { 
     createBrand, 
@@ -28,6 +29,11 @@ const {
     updateSize,
     deleteSize
 } = require('../controllers/size.controller');
+const { 
+    createProduct,
+    getProducts,
+    findProduct
+} = require('../controllers/product.controller');
 
 /**
  * brand's route
@@ -67,6 +73,8 @@ router.delete('/size/:size_id/delete', [ AuthMiddleware, SizeRequest.UpdateParam
 /**
  * product's route
 */
-// router.post('/product/create', [ AuthMiddleware ],)
+router.post('/product/create', [ AuthMiddleware, ProductRequest.CreateProductRequest ], createProduct);
+router.get('/product/', [ AuthMiddleware ], getProducts);
+router.get('/product/:product_id/find', [ AuthMiddleware ], findProduct);
 
 module.exports = router;

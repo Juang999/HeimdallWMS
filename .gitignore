@@ -4,3 +4,5 @@
 .env.production
 node_modules
 src/**/unit-test
+public/images/brands/*
+public/images/brands/*

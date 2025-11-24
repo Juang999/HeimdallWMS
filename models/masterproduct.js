@@ -16,6 +16,30 @@ module.exports = (sequelize, DataTypes) => {
         sourceKey: 'id',
         foreignKey: 'product_id'
       })
+
+      MasterProduct.belongsTo(models.Brand, {
+        as: 'brand',
+        targetKey: 'id',
+        foreignKey: 'brand_id'
+      })
+
+      MasterProduct.belongsTo(models.Category, {
+        as: 'category',
+        targetKey: 'id',
+        foreignKey: 'category_id'
+      })
+
+      MasterProduct.belongsTo(models.SubCategory, {
+        as: 'sub_category',
+        targetKey: 'id',
+        foreignKey: 'sub_category_id'
+      })
+
+      MasterProduct.belongsTo(models.CodeMaster, {
+        as: 'gender',
+        targetKey: 'id',
+        foreignKey: 'gender_id'
+      })
     }
   }
   MasterProduct.init({

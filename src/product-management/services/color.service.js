@@ -1,4 +1,5 @@
 const { Color } = require('../../../models');
+const { Op } = require('sequelize');
 
 class ColorService {
     createColor = async (colorName, hexCode, colorCode) => {
@@ -28,6 +29,19 @@ class ColorService {
         let result = await Color.destroy({
             where: {
                 id: colorId
+            }
+        });
+
+        return result;
+    }
+
+    retrieveColors = async (bulkColorId) => {
+        let result = await Color.findAll({
+            attributes: ['id', 'color_name', 'color_code'],
+            where: {
+                id: {
+                    [Op.in]: bulkColorId
+                }
             }
         });
 

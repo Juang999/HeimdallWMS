@@ -25,5 +25,8 @@ module.exports = {
         FindParamsSizeRequest: require('./size/find-params-size.request'),
         UpdateParamsSizeRequest: require('./size/update-params-size.request'),
         UpdateBodySizeRequest: require('./size/update-body-size.request'),
+    },
+    ProductRequest: {
+        CreateProductRequest: require('./product/create-product.request'),
     }
 }
